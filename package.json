@@ -32,7 +32,7 @@
     "vows": "^0.8.3"
   },
   "scripts": {
-    "test": "node test/index-test.js && node test/strategies/basic-test.js && node test/strategies/digest-test.js",
+    "test": "node test/index-test.js && node test/strategies/basic-test.js && node test/strategies/digest-test.js && node test/utils/string-test.js",
     "lint": "eslint ."
   },
   "engines": {

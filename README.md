@@ -9,7 +9,7 @@ This module lets you authenticate HTTP requests using the standard basic and
 digest schemes in your Node.js applications.  By plugging into Passport, support
 for these schemes can be easily and unobtrusively integrated into any
 application or framework that supports [Connect](http://www.senchalabs.org/connect/)-style
-middleware, including [Express](http://expressjs.com/).
+middleware, including [Express](https://expressjs.com/).
 
 
 ---
@@ -48,7 +48,7 @@ Use `passport.authenticate()`, specifying the `'basic'` strategy, to
 authenticate requests.  Requests containing an 'Authorization' header do not
 require session support, so the `session` option can be set to `false`.
 
-For example, as route middleware in an [Express](http://expressjs.com/)
+For example, as route middleware in an [Express](https://expressjs.com/)
 application:
 
     app.get('/private', 
@@ -95,7 +95,7 @@ Use `passport.authenticate()`, specifying the `'digest'` strategy, to
 authenticate requests.  Requests containing an 'Authorization' header do not
 require session support, so the `session` option can be set to `false`.
 
-For example, as route middleware in an [Express](http://expressjs.com/)
+For example, as route middleware in an [Express](https://expressjs.com/)
 application:
 
     app.get('/private', 
