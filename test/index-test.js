@@ -1,17 +1,15 @@
-var vows = require('vows');
-var assert = require('assert');
-var util = require('util');
-var http = require('passport-http');
+const vows = require('vows');
+const assert = require('assert');
+const http = require('../lib/modern-passport-http');
 
-
-vows.describe('passport-http').addBatch({
+vows.describe('modern-passport-http').addBatch({
   
   'module': {
-    'should export BasicStrategy': function (x) {
+    'should export BasicStrategy': function () {
       assert.isFunction(http.BasicStrategy);
     },
 
-    'should export DigestStrategy': function (x) {
+    'should export DigestStrategy': function () {
       assert.isFunction(http.DigestStrategy);
     }
   },

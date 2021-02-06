@@ -9,12 +9,5 @@ that increase test coverage are happily accepted.
 Ensure that the test suite passes by executing:
 
 ```bash
-$ make test
-```
-
-Coverage reports can be generated and viewed by executing:
-
-```bash
-$ make test-cov
-$ make view-cov
+$ yarn test
 ```

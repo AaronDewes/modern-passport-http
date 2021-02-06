@@ -1,8 +1,16 @@
 {
-  "name": "passport-http",
+  "name": "modern-passport-http",
   "version": "0.3.0",
   "description": "HTTP Basic and Digest authentication strategies for Passport.",
-  "keywords": ["passport", "http", "basic", "digest", "auth", "authn", "authentication"],
+  "keywords": [
+    "passport",
+    "http",
+    "basic",
+    "digest",
+    "auth",
+    "authn",
+    "authentication"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/jaredhanson/passport-http.git"
@@ -11,24 +19,28 @@
     "url": "http://github.com/jaredhanson/passport-http/issues"
   },
   "author": {
-    "name": "Jared Hanson",
-    "email": "jaredhanson@gmail.com",
-    "url": "http://www.jaredhanson.net/"
+    "name": "Aaron Dewes",
+    "email": "aaron.dewes@web.de"
   },
-  "licenses": [ {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/MIT"
-  } ],
-  "main": "./lib/passport-http",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib/modern-passport-http",
   "dependencies": {
-    "passport-strategy": "1.x.x"
+    "passport-strategy": "^1.0.0"
   },
   "devDependencies": {
-    "make-node": "0.4.6",
-    "vows": "0.8.x"
+    "eslint": "^7.19.0",
+    "vows": "^0.8.3"
   },
   "scripts": {
-    "test": "NODE_PATH=lib make test"
+    "test": "node test/index-test.js && node test/strategies/basic-test.js && node test/strategies/digest-test.js",
+    "lint": "eslint ."
   },
-  "engines": { "node": ">= 0.4.0" }
+  "engines": {
+    "node": ">= 0.4.0"
+  }
 }

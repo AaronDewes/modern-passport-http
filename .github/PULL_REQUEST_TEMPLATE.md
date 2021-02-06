@@ -1,18 +1,9 @@
 ** READ THIS FIRST! **
 
-#### Are you implementing a new feature?
-
-Requests for new features should first be discussed on the [developer forum](https://github.com/passport/develop).
-This allows the community to gather feedback and assess whether or not there is
-an existing way to achieve the desired functionality.
-
-If it is determined that a new feature needs to be implemented, include a link
-to the relevant discussion along with the pull request.
-
 #### Is this a security patch?
 
 Do not open pull requests that might have security implications.  Potential
-security vulnerabilities should be reported privately to jaredhanson@gmail.com.
+security vulnerabilities should be reported privately to jaredhanson@gmail.com (and for this fork, aaron.dewes@web.de).
 Once any vulerabilities have been repaired, the details will be disclosed
 publicly in a responsible manner.  This also allows time for coordinating with
 affected parties in order to mitigate negative consequences.
@@ -34,7 +25,7 @@ information requested below.
 <!-- Place an `x` in the boxes that apply.  If you are unsure, please ask and -->
 <!-- we will help. -->
 
-- [ ] I have read the [CONTRIBUTING](https://github.com/jaredhanson/passport-http/blob/master/CONTRIBUTING.md) guidelines.
+- [ ] I have read the [CONTRIBUTING](https://github.com/AaronDewes/modern-passport-http/blob/master/CONTRIBUTING.md) guidelines.
 - [ ] I have added test cases which verify the correct operation of this feature or patch.
 - [ ] I have added documentation pertaining to this feature or patch.
 - [ ] The automated test suite (`$ make test`) executes successfully.

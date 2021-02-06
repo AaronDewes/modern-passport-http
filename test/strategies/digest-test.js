@@ -1,7 +1,7 @@
-var vows = require('vows');
-var assert = require('assert');
-var util = require('util');
-var DigestStrategy = require('passport-http/strategies/digest');
+/* eslint-disable no-unused-vars */
+const vows = require('vows');
+const assert = require('assert');
+const DigestStrategy = require('../../lib/modern-passport-http/strategies/digest');
 
 
 vows.describe('DigestStrategy').addBatch({
@@ -21,7 +21,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -34,14 +34,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -64,7 +64,7 @@ vows.describe('DigestStrategy').addBatch({
 
   'strategy handling a valid request with an empty username': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -77,14 +77,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -106,7 +106,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with credentials not separated by spaces': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -119,14 +119,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -148,7 +148,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request and supplying hashed HA1 to secret callback': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, { ha1: '9e3bcfb22c441e9648cae34400c648d0' });
         },
@@ -161,14 +161,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -190,7 +190,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request without optional validate callback': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         }
@@ -200,14 +200,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -229,7 +229,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with algorithm set to "MD5"': {
     topic: function() {
-      var strategy = new DigestStrategy({ algorithm: 'MD5' },
+      let strategy = new DigestStrategy({ algorithm: 'MD5' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -242,14 +242,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -271,7 +271,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with qop set to "auth"': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth' },
+      let strategy = new DigestStrategy({ qop: 'auth' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -279,7 +279,7 @@ vows.describe('DigestStrategy').addBatch({
           if (options.nonce === 'T1vogipt8GzzWyCZt7U3TNV5XsarMW8y' && options.cnonce === 'MTMxOTkx' && options.nc === '00000001') {
             done(null, true);
           } else {
-            done(new Error('something is wrong'))
+            done(new Error('something is wrong'));
           }
         }
       );
@@ -288,17 +288,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -320,7 +320,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with qop set to "auth" and equal sign in URL': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth' },
+      let strategy = new DigestStrategy({ qop: 'auth' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -328,7 +328,7 @@ vows.describe('DigestStrategy').addBatch({
           if (options.nonce === '3sauEztFK9HB2vjADmXE4sQbtwpGCFZ2' && options.cnonce === 'MTM0MTkw' && options.nc === '00000001') {
             done(null, { nonce: options.nonce, cnonce: options.cnonce, nc: options.nc });
           } else {
-            done(new Error('something is wrong'))
+            done(new Error('something is wrong'));
           }
         }
       );
@@ -337,17 +337,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/sessions.json?sEcho=2&iColumns=12';
         req.method = 'HEAD';
@@ -369,7 +369,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with credentials not separated by spaces with qop set to "auth" and equal sign in URL': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth' },
+      let strategy = new DigestStrategy({ qop: 'auth' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -377,7 +377,7 @@ vows.describe('DigestStrategy').addBatch({
           if (options.nonce === '3sauEztFK9HB2vjADmXE4sQbtwpGCFZ2' && options.cnonce === 'MTM0MTkw' && options.nc === '00000001') {
             done(null, { nonce: options.nonce, cnonce: options.cnonce, nc: options.nc });
           } else {
-            done(new Error('something is wrong'))
+            done(new Error('something is wrong'));
           }
         }
       );
@@ -386,17 +386,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/sessions.json?sEcho=2&iColumns=12';
         req.method = 'HEAD';
@@ -418,7 +418,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a valid request with qop set to "auth" and algorithm set to "MD5-sess"': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth', algorithm: 'MD5-sess' },
+      let strategy = new DigestStrategy({ qop: 'auth', algorithm: 'MD5-sess' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -431,14 +431,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -460,7 +460,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling an invalid request with qop set to "auth-int" and auth-int support not implemented': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth-int' },
+      let strategy = new DigestStrategy({ qop: 'auth-int' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -473,17 +473,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function(err) {
           self.callback(null, err);
-        }
+        };
         
         req.url = '/';
         req.method = 'POST';
@@ -507,7 +507,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with invalid password': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'idontknow');
         },
@@ -520,14 +520,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -548,7 +548,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request that does not have a shared secret': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, false);
         },
@@ -561,14 +561,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -589,7 +589,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request that is not validated': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -602,14 +602,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -630,7 +630,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request that encounters an error while finding shared secret': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(new Error('something went wrong'));
         },
@@ -643,17 +643,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function(err) {
           self.callback(null, err);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -675,7 +675,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request that encounters an error during validation': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -688,17 +688,17 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.error = function(err) {
           self.callback(null, err);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -720,7 +720,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -733,14 +733,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -759,7 +759,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with non-Digest authorization credentials': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -772,14 +772,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -800,7 +800,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with malformed authorization header': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -813,14 +813,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(status) {
           self.callback(null, status);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -841,7 +841,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with malformed authorization credentials': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -854,14 +854,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(status) {
           self.callback(null, status);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -882,7 +882,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with non-matching uri': {
     topic: function() {
-      var strategy = new DigestStrategy({ algorithm: 'MD5' },
+      let strategy = new DigestStrategy({ algorithm: 'MD5' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -895,14 +895,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(status) {
           self.callback(null, status);
-        }
+        };
         
         req.url = '/admin';
         req.method = 'HEAD';
@@ -923,7 +923,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with unknown algorithm': {
     topic: function() {
-      var strategy = new DigestStrategy({ algorithm: 'MD5' },
+      let strategy = new DigestStrategy({ algorithm: 'MD5' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -936,14 +936,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(status) {
           self.callback(null, status);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -964,7 +964,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with unknown quality of protection': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth' },
+      let strategy = new DigestStrategy({ qop: 'auth' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -977,14 +977,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(status) {
           self.callback(null, status);
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -1005,7 +1005,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request with DIGEST scheme in capitalized letters': {
     topic: function() {
-      var strategy = new DigestStrategy(
+      let strategy = new DigestStrategy(
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1018,14 +1018,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(null, user);
-        }
+        };
         strategy.fail = function() {
           self.callback(new Error('should not be called'));
-        }
+        };
         
         req.url = '/';
         req.method = 'HEAD';
@@ -1047,7 +1047,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request that is not verified against specific realm': {
     topic: function() {
-      var strategy = new DigestStrategy({ realm: 'Administrators' },
+      let strategy = new DigestStrategy({ realm: 'Administrators' },
         function(username, done) {
           done(null, false);
         },
@@ -1060,14 +1060,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1087,7 +1087,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with domain option set': {
     topic: function() {
-      var strategy = new DigestStrategy({ domain: '/admin' },
+      let strategy = new DigestStrategy({ domain: '/admin' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1100,14 +1100,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1126,7 +1126,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with multiple domain options set': {
     topic: function() {
-      var strategy = new DigestStrategy({ domain: ['/admin', '/private'] },
+      let strategy = new DigestStrategy({ domain: ['/admin', '/private'] },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1139,14 +1139,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1165,7 +1165,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with opaque option set': {
     topic: function() {
-      var strategy = new DigestStrategy({ opaque: 'abcdefg1234' },
+      let strategy = new DigestStrategy({ opaque: 'abcdefg1234' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1178,14 +1178,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1204,7 +1204,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with algorithm option set': {
     topic: function() {
-      var strategy = new DigestStrategy({ algorithm: 'MD5-sess' },
+      let strategy = new DigestStrategy({ algorithm: 'MD5-sess' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1217,14 +1217,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1243,7 +1243,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with qop option set': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: 'auth' },
+      let strategy = new DigestStrategy({ qop: 'auth' },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1256,14 +1256,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1282,7 +1282,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy handling a request without authorization credentials with multiple qop options set': {
     topic: function() {
-      var strategy = new DigestStrategy({ qop: ['auth', 'auth-int'] },
+      let strategy = new DigestStrategy({ qop: ['auth', 'auth-int'] },
         function(username, done) {
           done(null, { username: username }, 'secret');
         },
@@ -1295,14 +1295,14 @@ vows.describe('DigestStrategy').addBatch({
     
     'after augmenting with actions': {
       topic: function(strategy) {
-        var self = this;
-        var req = {};
+        let self = this;
+        let req = {};
         strategy.success = function(user) {
           self.callback(new Error('should not be called'));
-        }
+        };
         strategy.fail = function(challenge) {
           self.callback(null, challenge);
-        }
+        };
         
         req.url = '/';
         req.headers = {};
@@ -1321,7 +1321,7 @@ vows.describe('DigestStrategy').addBatch({
   
   'strategy constructed without a secret callback or validate callback': {
     'should throw an error': function (strategy) {
-      assert.throws(function() { new DigestStrategy() });
+      assert.throws(function() { new DigestStrategy(); });
     },
   },
   
