@@ -22,12 +22,7 @@
     "name": "Aaron Dewes",
     "email": "aaron.dewes@web.de"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/MIT"
-    }
-  ],
+  "license": "MIT",
   "main": "./lib/modern-passport-http",
   "dependencies": {
     "passport-strategy": "^1.0.0"
