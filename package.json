@@ -1,6 +1,6 @@
 {
   "name": "modern-passport-http",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "HTTP Basic and Digest authentication strategies for Passport.",
   "keywords": [
     "passport",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-http.git"
+    "url": "git://github.com/AaronDewes/modern-passport-http.git"
   },
   "bugs": {
-    "url": "http://github.com/jaredhanson/passport-http/issues"
+    "url": "http://github.com/AaronDewes/modern-passport-http/issues"
   },
   "author": {
     "name": "Aaron Dewes",
