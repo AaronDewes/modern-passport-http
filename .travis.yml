@@ -13,9 +13,6 @@ before_install:
   - "npm install -g coveralls"
 
 script:
-  - "NODE_PATH=lib make check"
-
-after_success:
-  - "NODE_PATH=lib make report-cov"
+  - "NODE_PATH=lib yarn test"
 
 sudo: false
